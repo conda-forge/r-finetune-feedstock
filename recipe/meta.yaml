@@ -59,6 +59,7 @@ test:
   requires:
     - r-testthat
     - r-discrim
+    - r-kknn
     - r-klar
     - r-lme4
     - r-matrix
