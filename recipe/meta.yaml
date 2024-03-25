@@ -1,4 +1,4 @@
-{% set version = '1.1.0' %}
+{% set version = "1.2.0" %}
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
 
@@ -10,11 +10,11 @@ source:
   url:
     - {{ cran_mirror }}/src/contrib/finetune_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/finetune/finetune_{{ version }}.tar.gz
-  sha256: d18fa031546241b4a9d0a8e3aa0a5388eafeeb8fdc93e03230dd5dd8a674acab
+  sha256: d72ebfddd33a70d9d6078265094e08ab8f90e827b0ce4597f75a5197a3432c00
 
 build:
-  merge_build_host: True  # [win]
-  number: 1
+  merge_build_host: true  # [win]
+  number: 0
   noarch: generic
   rpaths:
     - lib/R/lib/
@@ -36,7 +36,7 @@ requirements:
     - r-tibble
     - r-tidyr
     - r-tidyselect
-    - r-tune >=1.1.1
+    - r-tune >=1.2.0
     - r-vctrs
     - r-workflows >=0.2.6
   run:
@@ -51,24 +51,37 @@ requirements:
     - r-tibble
     - r-tidyr
     - r-tidyselect
-    - r-tune >=1.1.1
+    - r-tune >=1.2.0
     - r-vctrs
     - r-workflows >=0.2.6
 
 test:
+  requires:
+    - r-testthat
+    - r-discrim
+    - r-kknn
+    - r-klar
+    - r-lme4
+    - r-matrix
+    - r-modeldata
+    - r-ranger
+    - r-rpart
+    - r-rsample
+    - r-yardstick
+  source_files:
+    - tests/
   commands:
-    - $R -e "library('finetune')"           # [not win]
-    - "\"%R%\" -e \"library('finetune')\""  # [win]
+    - $R -e "library('finetune')"                                                     # [not win]
+    - $R -e "testthat::test_file('tests/testthat.R', stop_on_failure=TRUE)"           # [not win]
+    - "\"%R%\" -e \"library('finetune')\""                                            # [win]
+    - "\"%R%\" -e \"testthat::test_file('tests/testthat.R', stop_on_failure=TRUE)\""  # [win]
 
 about:
   home: https://finetune.tidymodels.org
   dev_url: https://github.com/tidymodels/finetune
   license: MIT
-  summary: The ability to tune models is important. 'finetune' enhances the 'tune' package by
-    providing more specialized methods for finding reasonable values of model tuning
-    parameters.  Two racing methods described by Kuhn (2014) <arXiv:1405.6974> are included.
-    An iterative search method using generalized simulated annealing (Bohachevsky, Johnson
-    and Stein, 1986) <doi:10.1080/00401706.1986.10488128> is also included.
+  summary: The ability to tune models is important. 'finetune' enhances the 'tune' package by providing more specialized methods for finding reasonable values of model tuning parameters.  Two racing methods described by Kuhn (2014) <arXiv:1405.6974> are included. An iterative search method using generalized simulated annealing
+    (Bohachevsky, Johnson and Stein, 1986) <doi:10.1080/00401706.1986.10488128> is also included.
   license_family: MIT
   license_file:
     - {{ environ["PREFIX"] }}/lib/R/share/licenses/MIT
@@ -77,26 +90,3 @@ about:
 extra:
   recipe-maintainers:
     - conda-forge/r
-
-# Package: finetune
-# Title: Additional Functions for Model Tuning
-# Version: 1.1.0
-# Authors@R: c( person("Max", "Kuhn", , "max@posit.co", role = c("aut", "cre"), comment = c(ORCID = "0000-0003-2402-136X")), person("Posit Software, PBC", role = c("cph", "fnd")) )
-# Description: The ability to tune models is important. 'finetune' enhances the 'tune' package by providing more specialized methods for finding reasonable values of model tuning parameters.  Two racing methods described by Kuhn (2014) <arXiv:1405.6974> are included. An iterative search method using generalized simulated annealing (Bohachevsky, Johnson and Stein, 1986) <doi:10.1080/00401706.1986.10488128> is also included.
-# License: MIT + file LICENSE
-# URL: https://github.com/tidymodels/finetune, https://finetune.tidymodels.org
-# BugReports: https://github.com/tidymodels/finetune/issues
-# Depends: R (>= 3.5), tune (>= 1.1.1)
-# Imports: cli, dials (>= 0.1.0), dplyr (>= 1.1.1), ggplot2, parsnip (>= 1.1.0), purrr, rlang, tibble, tidyr, tidyselect, utils, vctrs, workflows (>= 0.2.6)
-# Suggests: BradleyTerry2, covr, discrim, kknn, klaR, lme4, modeldata, ranger, recipes (>= 0.2.0), rpart, rsample, spelling, testthat, yardstick
-# Config/Needs/website: tidyverse/tidytemplate
-# Config/testthat/edition: 3
-# Encoding: UTF-8
-# Language: en-US
-# RoxygenNote: 7.2.3
-# NeedsCompilation: no
-# Packaged: 2023-04-18 23:16:32 UTC; max
-# Author: Max Kuhn [aut, cre] (<https://orcid.org/0000-0003-2402-136X>), Posit Software, PBC [cph, fnd]
-# Maintainer: Max Kuhn <max@posit.co>
-# Repository: CRAN
-# Date/Publication: 2023-04-19 07:40:02 UTC
