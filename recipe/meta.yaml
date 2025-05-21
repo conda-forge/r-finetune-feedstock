@@ -1,4 +1,4 @@
-{% set version = "1.2.0" %}
+{% set version = "1.2.1" %}
 {% set posix = 'm2-' if win else '' %}
 
 package:
@@ -9,10 +9,10 @@ source:
   url:
     - {{ cran_mirror }}/src/contrib/finetune_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/finetune/finetune_{{ version }}.tar.gz
-  sha256: d72ebfddd33a70d9d6078265094e08ab8f90e827b0ce4597f75a5197a3432c00
+  sha256: 81ac2a446f16d72e885d6d0fde93c9f4c43a42a18d65697287f3a3cd45c76c1f
 
 build:
-  number: 1
+  number: 0
   noarch: generic
   rpaths:
     - lib/R/lib/
