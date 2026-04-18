@@ -1,4 +1,4 @@
-{% set version = "1.2.1" %}
+{% set version = "1.3.0" %}
 {% set posix = 'm2-' if win else '' %}
 
 package:
@@ -9,10 +9,10 @@ source:
   url:
     - {{ cran_mirror }}/src/contrib/finetune_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/finetune/finetune_{{ version }}.tar.gz
-  sha256: 81ac2a446f16d72e885d6d0fde93c9f4c43a42a18d65697287f3a3cd45c76c1f
+  sha256: 0568b08d6d197bd0af02bcd06c176a5ae827be1a6bc044ab489e10716d7b683d
 
 build:
-  number: 1
+  number: 0
   noarch: generic
   rpaths:
     - lib/R/lib/
@@ -78,8 +78,8 @@ about:
   home: https://finetune.tidymodels.org
   dev_url: https://github.com/tidymodels/finetune
   license: MIT
-  summary: The ability to tune models is important. 'finetune' enhances the 'tune' package by providing more specialized methods for finding reasonable values of model tuning parameters.  Two racing methods described by Kuhn (2014) <arXiv:1405.6974> are included. An iterative search method using generalized simulated annealing
-    (Bohachevsky, Johnson and Stein, 1986) <doi:10.1080/00401706.1986.10488128> is also included.
+  summary: The ability to tune models is important. 'finetune' enhances the 'tune' package by providing more specialized methods for finding reasonable values of model tuning parameters.  Two racing methods described by Kuhn (2014) <arXiv:1405.6974> are included. An iterative search method using generalized simulated 
+    annealing (Bohachevsky, Johnson and Stein, 1986) <doi:10.1080/00401706.1986.10488128> is also included.
   license_family: MIT
   license_file:
     - {{ environ["PREFIX"] }}/lib/R/share/licenses/MIT
